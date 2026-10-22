@@ -5,9 +5,10 @@ import sys
 from pathlib import Path
 
 # Base Paths (resolve dynamically relative to this file)
-UTILS_DIR = Path(__file__).resolve().parent
-SRC_DIR = UTILS_DIR.parent
-PROJECT_ROOT = SRC_DIR.parent
+# config.py is at: <PROJECT_ROOT>/src/evguard/utils/config.py
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
+SRC_DIR = PROJECT_ROOT / "src"
+UTILS_DIR = SRC_DIR / "evguard" / "utils"
 
 DATA_DIR = PROJECT_ROOT / "data"
 RAW_DATA_DIR = DATA_DIR / "raw"
