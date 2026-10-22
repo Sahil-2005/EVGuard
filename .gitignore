@@ -1,0 +1,38 @@
+# Python virtual environment
+.venv/
+venv/
+ENV/
+
+# Python bytecode & cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyd
+.pytest_cache/
+.ruff_cache/
+
+# Local Spark & Hadoop temp files
+metastore_db/
+derby.log
+*.tmp
+spark-warehouse/
+
+# Local data files (preserve directory structure, exclude heavy outputs)
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+
+# Artifacts, logs & reports
+logs/*
+!logs/.gitkeep
+artifacts/*
+!artifacts/.gitkeep
+reports/*
+!reports/.gitkeep
+
+# IDE configuration
+.vscode/
+.idea/
+*.swp
+*.swo
