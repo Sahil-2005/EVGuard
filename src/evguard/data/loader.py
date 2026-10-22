@@ -1,7 +1,7 @@
 """Dataset loader supporting both CSV format and NASA MATLAB .mat files."""
 
 from pathlib import Path
-from typing import Dict, List, Optional, Union
+
 import numpy as np
 import pandas as pd
 from scipy.io import loadmat
@@ -12,7 +12,7 @@ from evguard.utils.logger import get_logger
 logger = get_logger(__name__)
 
 
-def load_dataset(source_path: Optional[Union[str, Path]] = None) -> pd.DataFrame:
+def load_dataset(source_path: str | Path | None = None) -> pd.DataFrame:
     """Load battery dataset from a specified path (CSV or .mat).
 
     If no path is specified or the file does not exist, falls back gracefully to the
@@ -78,7 +78,7 @@ def load_matlab_data(file_path: Path) -> pd.DataFrame:
         raise ValueError(f"Root object '{batt_key}' does not contain expected 'cycle' field.")
 
     cycles = batt_obj.cycle
-    records: List[Dict] = []
+    records: list[dict] = []
     discharge_cycle_counter = 0
 
     # cycles can be a list or 1D ndarray of cycle objects

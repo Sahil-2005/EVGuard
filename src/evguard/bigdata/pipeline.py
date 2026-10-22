@@ -2,7 +2,7 @@
 
 import time
 from pathlib import Path
-from typing import Dict, Tuple
+
 import pandas as pd
 from pyspark.sql import DataFrame, SparkSession
 from pyspark.sql import functions as F
@@ -23,7 +23,7 @@ def run_spark_pipeline(
     validated_df: pd.DataFrame,
     spark: SparkSession = None,
     output_parquet_path: Path = PROCESSED_PARQUET_DIR,
-) -> Tuple[pd.DataFrame, Dict]:
+) -> tuple[pd.DataFrame, dict]:
     """Execute the Big Data PySpark ETL and Spark SQL analytics pipeline.
 
     Transformations performed in Spark:

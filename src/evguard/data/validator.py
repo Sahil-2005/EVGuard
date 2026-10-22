@@ -2,8 +2,7 @@
 
 import json
 from pathlib import Path
-from typing import Dict, Tuple
-import numpy as np
+
 import pandas as pd
 
 from evguard.utils.config import (
@@ -20,7 +19,7 @@ logger = get_logger(__name__)
 def validate_and_preprocess(
     df: pd.DataFrame,
     report_output_path: Path = DATA_QUALITY_REPORT_FILE,
-) -> Tuple[pd.DataFrame, Dict]:
+) -> tuple[pd.DataFrame, dict]:
     """Validate schema, detect duplicates, flag physical anomalies, and engineer features.
 
     Does NOT silently delete records; instead flags them transparently with
@@ -28,7 +27,7 @@ def validate_and_preprocess(
     """
     logger.info("Starting battery dataset validation and quality assessment...")
     initial_rows = len(df)
-    quality_metrics: Dict = {
+    quality_metrics: dict = {
         "total_records_input": initial_rows,
         "duplicate_records_removed": 0,
         "missing_values_per_column": {},

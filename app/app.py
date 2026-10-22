@@ -11,6 +11,7 @@ Provides 4 dedicated analytics modules:
 import json
 import sys
 from pathlib import Path
+
 import numpy as np
 import pandas as pd
 import plotly.express as px
@@ -31,7 +32,7 @@ SRC_DIR = PROJECT_ROOT / "src"
 if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
-from evguard.analytics.degradation import compute_degradation_summary, compute_fleet_degradation_rankings
+from evguard.analytics.degradation import compute_degradation_summary
 from evguard.analytics.soh import classify_health_state
 from evguard.data.loader import load_dataset
 from evguard.data.synthetic_generator import generate_synthetic_battery_data
@@ -41,11 +42,9 @@ from evguard.utils.config import (
     DATA_QUALITY_REPORT_FILE,
     DEMO_DATA_FILE,
     EOL_SOH_THRESHOLD_PCT,
-    KMEANS_METRICS_FILE,
     KMEANS_MODEL_FILE,
     NOMINAL_CAPACITY_AH,
     PROCESSED_PARQUET_DIR,
-    RAW_DATA_DIR,
 )
 
 # Custom Styling (Dark-themed glassmorphism accents)
@@ -469,7 +468,7 @@ elif nav_section == "4. Spark Big Data & Quality":
     # Data Quality Report
     st.subheader("Data Validation & Anomaly Detection Summary")
     if DATA_QUALITY_REPORT_FILE.exists():
-        with open(DATA_QUALITY_REPORT_FILE, "r", encoding="utf-8") as f:
+        with open(DATA_QUALITY_REPORT_FILE, encoding="utf-8") as f:
             dq_metrics = json.load(f)
     else:
         dq_metrics = {

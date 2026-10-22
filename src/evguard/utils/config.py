@@ -1,7 +1,5 @@
 """Central configuration and hardware-tailored constants for EVGuard."""
 
-import os
-import sys
 from pathlib import Path
 
 # Base Paths (resolve dynamically relative to this file)

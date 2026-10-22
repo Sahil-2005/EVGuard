@@ -16,7 +16,7 @@ Note:
     statistical trend predictions.
 """
 
-from typing import Optional, Union
+
 import numpy as np
 import pandas as pd
 
@@ -27,7 +27,7 @@ logger = get_logger(__name__)
 
 
 def calculate_soh(
-    usable_capacity: Optional[float],
+    usable_capacity: float | None,
     reference_capacity: float = NOMINAL_CAPACITY_AH,
 ) -> float:
     """Calculate capacity-based State of Health (%) safely for a single scalar.
@@ -59,7 +59,7 @@ def calculate_soh(
 
 
 def calculate_soh_series(
-    capacity_series: Union[pd.Series, np.ndarray],
+    capacity_series: pd.Series | np.ndarray,
     reference_capacity: float = NOMINAL_CAPACITY_AH,
 ) -> pd.Series:
     """Vectorized calculation of capacity-based State of Health (%)."""

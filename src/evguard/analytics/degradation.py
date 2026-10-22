@@ -1,16 +1,16 @@
 """Degradation kinetics, fade rate analysis, and Remaining Useful Life (RUL) estimation."""
 
-from typing import Dict, List, Optional
+
 import numpy as np
 import pandas as pd
 
-from evguard.utils.config import EOL_SOH_THRESHOLD_PCT, NOMINAL_CAPACITY_AH
+from evguard.utils.config import EOL_SOH_THRESHOLD_PCT
 from evguard.utils.logger import get_logger
 
 logger = get_logger(__name__)
 
 
-def compute_degradation_summary(battery_df: pd.DataFrame) -> Dict:
+def compute_degradation_summary(battery_df: pd.DataFrame) -> dict:
     """Compute cycle life degradation metrics for a single battery time-series.
 
     Calculates:
@@ -84,8 +84,8 @@ def compute_degradation_summary(battery_df: pd.DataFrame) -> Dict:
 
 def compute_fleet_degradation_rankings(df: pd.DataFrame) -> pd.DataFrame:
     """Analyze and rank all batteries in the dataset by degradation rate and current health."""
-    results: List[Dict] = []
-    for batt_id, group in df.groupby("battery_id"):
+    results: list[dict] = []
+    for _batt_id, group in df.groupby("battery_id"):
         summary = compute_degradation_summary(group)
         if "error" not in summary:
             results.append(summary)

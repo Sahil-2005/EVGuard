@@ -42,12 +42,12 @@ def main():
         return 1
 
     try:
-        import pandas as pd
         import numpy as np
+        import pandas as pd
+        import plotly
         import scipy
         import sklearn
         import streamlit
-        import plotly
 
         print(f"Pandas Version    : {pd.__version__}")
         print(f"NumPy Version     : {np.__version__}")

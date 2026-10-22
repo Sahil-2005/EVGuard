@@ -2,7 +2,7 @@
 
 import logging
 import sys
-from pathlib import Path
+
 from evguard.utils.config import LOGS_DIR
 
 

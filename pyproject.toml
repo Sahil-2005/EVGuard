@@ -45,6 +45,8 @@ select = [
 ignore = [
     "E501", # line length handled by formatter
     "B008", # function calls in argument defaults
+    "E402", # module level import not at top of file (sys.path & streamlit setup)
+    "UP038", # isinstance tuple vs union syntax
 ]
 
 [tool.ruff.lint.isort]

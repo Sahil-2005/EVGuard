@@ -1,10 +1,10 @@
 """Evaluation utilities and cluster profiling diagnostics for EVGuard."""
 
-from typing import Dict
+
 import pandas as pd
 
 
-def generate_cluster_diagnostics(clustered_df: pd.DataFrame) -> Dict:
+def generate_cluster_diagnostics(clustered_df: pd.DataFrame) -> dict:
     """Compute detailed summary statistics for each identified battery cluster.
 
     Generates mean, min, max, standard deviation, and percentage of cycles

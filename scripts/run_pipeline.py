@@ -84,8 +84,8 @@ def main():
     model, clustered_df, metrics = train_and_evaluate_clustering(processed_df)
     print(f"-> Silhouette Score: {metrics['silhouette_score']}")
     print(f"-> Davies-Bouldin Index: {metrics['davies_bouldin_index']}")
-    print(f"-> Model artifact saved to: artifacts/kmeans_model.joblib")
-    print(f"-> Metrics report saved to: artifacts/clustering_metrics.json")
+    print("-> Model artifact saved to: artifacts/kmeans_model.joblib")
+    print("-> Metrics report saved to: artifacts/clustering_metrics.json")
 
     print("\n" + "=" * 70)
     print(" EVGuard Big Data Pipeline Completed Successfully! ")

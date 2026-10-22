@@ -2,9 +2,8 @@
 
 import json
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple
+
 import joblib
-import numpy as np
 import pandas as pd
 from sklearn.cluster import KMeans
 from sklearn.metrics import davies_bouldin_score, silhouette_score
@@ -29,7 +28,7 @@ class BatteryClusterModel:
         self,
         n_clusters: int = KMEANS_N_CLUSTERS,
         random_state: int = KMEANS_RANDOM_STATE,
-        features: Optional[List[str]] = None,
+        features: list[str] | None = None,
     ):
         self.n_clusters = n_clusters
         self.random_state = random_state
@@ -41,8 +40,8 @@ class BatteryClusterModel:
             n_init=10,
             max_iter=300,
         )
-        self.cluster_labels_map: Dict[int, str] = {}
-        self.evaluation_metrics: Dict = {}
+        self.cluster_labels_map: dict[int, str] = {}
+        self.evaluation_metrics: dict = {}
         self.is_fitted = False
 
     def fit(self, df: pd.DataFrame) -> "BatteryClusterModel":
@@ -126,7 +125,7 @@ class BatteryClusterModel:
         res["cluster_label"] = [self.cluster_labels_map.get(cid, f"Cluster {cid}") for cid in cluster_ids]
         return res
 
-    def compute_elbow_curve(self, df: pd.DataFrame, max_k: int = 6) -> Dict[int, float]:
+    def compute_elbow_curve(self, df: pd.DataFrame, max_k: int = 6) -> dict[int, float]:
         """Compute inertia values across k=2 to max_k for elbow-method visualization."""
         train_df = df[df.get("is_plausible", True) == True].copy()  # noqa: E712
         X = train_df[self.features].dropna()
@@ -163,7 +162,7 @@ class BatteryClusterModel:
         return joblib.load(model_path)
 
 
-def train_and_evaluate_clustering(df: pd.DataFrame) -> Tuple[BatteryClusterModel, pd.DataFrame, Dict]:
+def train_and_evaluate_clustering(df: pd.DataFrame) -> tuple[BatteryClusterModel, pd.DataFrame, dict]:
     """Train K-Means clustering, evaluate metrics, save artifacts, and annotate dataframe."""
     model = BatteryClusterModel(n_clusters=3, random_state=42)
     model.fit(df)

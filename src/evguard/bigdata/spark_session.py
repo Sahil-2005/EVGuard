@@ -2,8 +2,7 @@
 
 import os
 import sys
-from pathlib import Path
-from typing import Optional
+
 from pyspark.sql import SparkSession
 
 from evguard.utils.config import (
@@ -73,7 +72,7 @@ def get_spark_session(app_name: str = "EVGuard_Analytics") -> SparkSession:
     return spark
 
 
-def stop_spark_session(spark: Optional[SparkSession]) -> None:
+def stop_spark_session(spark: SparkSession | None) -> None:
     """Safely shut down an active Spark session."""
     if spark is not None:
         try:

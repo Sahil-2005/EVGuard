@@ -6,7 +6,7 @@ from the NASA Battery Aging dataset (nominal capacity ~2.0 Ah, discharge cutoff 
 
 from datetime import datetime, timedelta
 from pathlib import Path
-from typing import Optional
+
 import numpy as np
 import pandas as pd
 
@@ -20,7 +20,7 @@ logger = get_logger(__name__)
 
 
 def generate_synthetic_battery_data(
-    output_path: Optional[Path] = None,
+    output_path: Path | None = None,
     num_cycles_per_battery: int = 150,
     seed: int = 42,
 ) -> pd.DataFrame:
